@@ -1,0 +1,26 @@
+FUNCTION sum(T: ARRAY_OF INTEGER) : INTEGER
+VAR
+    sum : INTEGER := 0;
+    i : INTEGER
+BEGIN
+    FOR i FROM 1 TO T.length STEP 1  DO
+        sum := sum + T[i]
+    END_FOR
+    RETURN sum
+END
+
+// complexty = O(N)
+
+FUNCTION sumDR(T: ARRAY_OF INTEGER, start : INTEGER, final : INTEGER) : INTEGER
+VAR 
+    mid : INTEGER;
+BEGIN
+    IF (start = final) THEN
+        RETURN T[start]
+    ELSE
+        mid := (start + final) DIV 2
+        RETURN sumDR(T, start, mid) + sumDR(T,  mid+1,  final)
+    END_IF
+END
+
+// complexty = O(N log N)
