@@ -1,0 +1,41 @@
+PROCEDURE min_max_DR(T: ARRAY_OF INTEGER, d : INTEGER, f: INTEGER, VAR max : INTEGER, VAR min : INTEGER)
+VAR
+    mid : INTEGER
+    mx1, mx2 : INTEGER
+    mn1, mn2 : INTEGER
+BEGIN
+    IF (d = f) THEN
+        max := T[d]
+        min := T[d]
+    ELSE
+        mid := (d+f) DIV 2
+        min_max_DR(T,d, mid, mx1, mn1)
+        min_max_DR(T, mid + 1, f, mx2, mn2)
+
+        IF (mx1 < mx2) THEN
+            max := mx2
+        ELSE
+            max := mx1
+        END_IF
+
+        IF (mn1 > mn2) THEN
+            min := mn2
+        ELSE
+            min := mn1
+        END_IF
+    END_IF
+END
+
+// T(n) = 3/2 n - 2
+
+// T(n) = a T(n/c) + b   => 2 T(n/2) + 2
+
+// hyp de recurrence n = 2 => T(2) = 1
+// suppose vrai pour n , demontrer pour 2n
+
+// T(2 n) = 2 T(2 n/ 2) + 2 
+//       = 2 T(n) + 2
+//       = 2 ((3/2) n - 2) + 2
+//       = 3 n -  2 
+//       = 3 (2 n / 2) - 2
+//       =  (3/2) (2 n) - 2 
