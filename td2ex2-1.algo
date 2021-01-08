@@ -1,0 +1,19 @@
+PROCEDURE min_max_itr(T : ARRAY_OF INTEGER, VAR min : INTEGER, VAR max : INTEGER)
+VAR
+    i : INTEGER
+BEGIN
+    min := T[1]
+    max := T[1]
+
+    FOR i FROM 2 TO T.length STEP 1  DO // n-1 iteration
+        IF (min > T[i]) THEN
+            min := T[i]
+        END_IF
+
+        IF (max < T[i]) THEN
+            max := T[i]
+        END_IF
+    END_FOR
+END
+
+// 2*(n-1) = 2n-2
