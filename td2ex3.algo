@@ -1,0 +1,21 @@
+FUNCTION Interv(T : ARRAY_OF INTEGER, d : INTEGER, f : INTEGER, a : INTEGER, b : INTEGER) : INTEGER
+VAR
+    mid : INTEGER
+BEGIN
+    IF (d>f) THEN
+        RETURN -1
+    END_IF
+    mid := (d + f ) DIV 2
+    IF (T[mid] <= b AND T[mid] >= a) THEN
+        RETURN mid
+    ELSE 
+        IF (T[mid] > b) THEN
+            Interv(T, d , mid -1, a, b)
+        ELSE_IF(T[mid] < a)
+             Interv(T, mid +1, f, a, b)
+        END_IF
+    END_IF
+END
+
+// T(n)= 1 T(n/2) + O (1)
+// T(n) = O(n)
